@@ -1,0 +1,19 @@
+{
+  "folders": [
+	{
+		"path": "..\\complete-javascript-course-master"
+	},
+	{
+		"path": "..\\WebDevelop"
+	},
+	{
+		"path": "..\\CS61B"
+	},
+	{
+		"path": "..\\Code"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Code"
+  }
+}
