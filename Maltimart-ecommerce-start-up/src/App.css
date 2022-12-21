@@ -62,3 +62,8 @@ img {
 section {
   padding: 6% 0%;
 }
+
+.section__title {
+  color: var(--primary-color);
+  font-weight: 600;
+}
