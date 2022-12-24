@@ -35,18 +35,18 @@
 }
 
 .hero__content {
-  padding-top: 45px;
+  padding-top: 30px;
 }
 
 .timer__count {
   background: var(--primary-color);
-  height: 300px;
+  height: 400px;
 }
 
 .timer__count img {
   width: 70% !important;
   height: 70% !important;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .store__btn {
@@ -57,6 +57,12 @@
 
 .store__btn a:hover {
   color: var(--primary-color);
+}
+
+@media only screen and (max-width: 1200px) {
+  .timer__count {
+    height: 300px;
+  }
 }
 
 @media only screen and (max-width: 992px) {
