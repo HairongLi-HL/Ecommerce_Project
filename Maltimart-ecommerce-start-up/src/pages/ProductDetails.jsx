@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 import { Container, Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
-import products from "../assets/data/products";
+// import products from "../assets/data/products";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import { motion } from "framer-motion";
@@ -12,23 +12,42 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
 import { toast } from "react-toastify";
 
+import { db } from "../firebase.config";
+import { doc, getDoc } from "firebase/firestore";
+import useGetData from "../custom-hooks/useGetData";
+
 const ProductDetails = () => {
+  const [product, setProduct] = useState({});
   const [tab, setTap] = useState("desc");
   const reviewUser = useRef("");
   const reviewMsg = useRef("");
   const dispatch = useDispatch();
 
   const [rating, setRating] = useState(null);
-
   const { id } = useParams();
-  const product = products.find((item) => item.id === id);
+
+  const { data: products } = useGetData("products");
+
+  const docRef = doc(db, "products", id);
+
+  useEffect(() => {
+    const getProduct = async () => {
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setProduct(docSnap.data());
+      } else {
+        console.log("no product!");
+      }
+    };
+    getProduct();
+  }, []);
 
   const {
     imgUrl,
     productName,
     price,
-    avgRating,
-    reviews,
+    // avgRating,
+    // reviews,
     description,
     category,
     shortDesc,
@@ -72,7 +91,7 @@ const ProductDetails = () => {
       <section className="pt-0">
         <Container>
           <Row>
-            <Col lg="6">
+            <Col lg="6" className="product__img">
               <img src={imgUrl} alt="" />
             </Col>
             <Col lg="6">
@@ -96,9 +115,7 @@ const ProductDetails = () => {
                       <i class="ri-star-half-line"></i>
                     </span>
                   </div>
-                  <p>
-                    (<span>{avgRating}</span> ratings)
-                  </p>
+                  <p>{/* (<span>{avgRating}</span> ratings) */}</p>
                 </div>
 
                 <div className="d-flex align-items-center gap-5">
@@ -134,7 +151,8 @@ const ProductDetails = () => {
                   className={`${tab === "rev" ? "active__tab" : ""}`}
                   onClick={() => setTap("rev")}
                 >
-                  Reviews ({reviews.length})
+                  Review
+                  {/* Reviews ({reviews.length}) */}
                 </h6>
               </div>
 
@@ -145,15 +163,15 @@ const ProductDetails = () => {
               ) : (
                 <div className="product__review mt-5">
                   <div className="review__wrapper">
-                    <ul>
-                      {reviews.map((item, index) => (
+                    {/* <ul>
+                      {reviews?.map((item, index) => (
                         <li key={index} className="mb-4">
                           <h6>Jhon Doe</h6>
                           <span>{item.rating} (rating)</span>
                           <p>{item.text}</p>
                         </li>
                       ))}
-                    </ul>
+                    </ul> */}
                     <div className="review__form">
                       <h4>Leave your experience</h4>
                       <form action="" onSubmit={submitHandler}>
