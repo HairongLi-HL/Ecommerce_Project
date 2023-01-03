@@ -56,7 +56,7 @@ const Checkout = () => {
                     Shipping: <br />
                     free shipping
                   </span>
-                  <span>$10</span>
+                  <span>$0</span>
                 </h6>
                 <h4>
                   Total Cost: <span>${totalAmount}</span>

@@ -49,6 +49,19 @@ const Shop = () => {
 
       setProductsData(filteredProducts);
     }
+    if (filterValue === "asc_price") {
+      console.log("here");
+      var numList = [];
+      const filteredProducts = products.filter((item) =>
+        numList.push(item.price).sort(function (a, b) {
+          return a - b;
+        })
+      );
+      // item.price.sort(function (a, b) {
+      //     return a - b;}
+
+      setProductsData(filteredProducts);
+    }
   };
 
   const handleSearch = (e) => {
@@ -81,10 +94,11 @@ const Shop = () => {
             </Col>
             <Col lg="3" md="6" className="text-end">
               <div className="filter__widget">
-                <select>
+                <select onChange={handleFilter}>
                   <option>Sort By</option>
-                  <option value="ascending">Ascending</option>
-                  <option value="descending">Descending</option>
+                  <option value="asc_price">Price from low to high</option>
+                  <option value="des_price">Price from high to low</option>
+                  <option value="sales">Sales</option>
                 </select>
               </div>
             </Col>

@@ -1,5 +1,5 @@
 .filter__widget select {
-  padding: 8px 20px;
+  padding: 8px 25px;
   border: 1px solid var(--primary-color);
   cursor: pointer;
   border-radius: 5px;
@@ -38,10 +38,23 @@
   color: var(--primary-color);
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 991px) {
   .filter__widget {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
+
+  .filter__widget select {
+    padding: 7px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .filter__widget {
+    margin-bottom: 20px;
+    display: flex;
+  }
+
   .filter__widget select {
     padding: 7px 20px;
     font-size: 0.9rem;
